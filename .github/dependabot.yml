@@ -1,0 +1,48 @@
+version: 2
+updates:
+- package-ecosystem: "npm"
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "01:00"
+    timezone: "Europe/Brussels"
+  groups:
+    production-dependencies:
+      dependency-type: "production"
+      patterns:
+        - "*"
+    development-dependencies:
+      dependency-type: "development"
+      patterns:
+        - "*"
+  open-pull-requests-limit: 5
+  versioning-strategy: increase
+  rebase-strategy: auto
+- package-ecosystem: "npm"
+  directories:
+  - "/e2e"
+  - "/e2e-package-managers/yarn"
+  - "/sites"
+  schedule:
+    interval: weekly
+    time: "01:00"
+    timezone: "Europe/Brussels"
+  groups:
+    all-dependencies:
+      patterns:
+        - "*"
+  open-pull-requests-limit: 5
+  versioning-strategy: increase
+  rebase-strategy: auto
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "01:00"
+    timezone: Europe/Brussels
+  groups:
+    all-dependencies:
+      patterns:
+        - "*"
+  open-pull-requests-limit: 5
+  rebase-strategy: auto
